@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>น้องโอบกอด</title>
+    <link href="https://fonts.googleapis.com/css2?family=Mali:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/base.css">
+
+    <link rel="stylesheet" href="css/buttons.css">
+    <link rel="stylesheet" href="css/cards.css">
+    <link rel="stylesheet" href="css/forms.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/loading.css">
+
+    <link rel="stylesheet" href="css/timeline.css">
+    <link rel="stylesheet" href="css/menu.css">
+    <link rel="stylesheet" href="css/quiz.css">
+    <link rel="stylesheet" href="css/results.css">
+    <link rel="stylesheet" href="css/sidebar.css">
+    <link rel="stylesheet" href="css/responsive.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+
+<body>
+
+    <!-- เพิ่มใน index.html ก่อน <div class="slider-container"> -->
+
+    <!-- Hamburger Button (Mobile Only) -->
+    <button class="hamburger-btn" id="hamburger-btn" aria-label="เปิดเมนู">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+    </button>
+
+    <!-- Sidebar Overlay (Mobile Only) -->
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+    <!-- Sidebar -->
+    <nav class="sidebar" id="sidebar" role="navigation" aria-label="เมนูหลัก">
+        <!-- Sidebar Header -->
+        <div class="sidebar-header">
+            <div class="sidebar-logo">
+                <div class="sidebar-logo-icon">👋</div>
+                <span class="sidebar-logo-text">น้องโอบกอด</span>
+            </div>
+            <button class="sidebar-close-btn" id="sidebar-close-btn" aria-label="ปิดเมนู">
+                ✕
+            </button>
+        </div>
+
+        <!-- Sidebar Menu -->
+        <div class="sidebar-menu">
+            <!-- หน้าแรก -->
+            <a href="#" class="sidebar-menu-item active" data-page="page-10" id="menu-home">
+                <span class="sidebar-menu-icon">🏠</span>
+                <span class="sidebar-menu-text">หน้าแรก</span>
+            </a>
+
+            <!-- บริการ -->
+            <div class="sidebar-section-title">บริการ</div>
+
+            <a href="#" class="sidebar-menu-item coming-soon" id="menu-chatbot">
+                <span class="sidebar-menu-icon">💬</span>
+                <span class="sidebar-menu-text">พูดคุยกับน้องโอบกอด</span>
+            </a>
+
+            <a href="#" class="sidebar-menu-item coming-soon" id="menu-consult">
+                <span class="sidebar-menu-icon">👨‍⚕️</span>
+                <span class="sidebar-menu-text">นัดปรึกษาผู้เชี่ยวชาญ</span>
+            </a>
+
+            <a href="#" class="sidebar-menu-item" data-page="activities" id="menu-activities">
+                <span class="sidebar-menu-icon">🎮</span>
+                <span class="sidebar-menu-text">กิจกรรมบำบัด</span>
+            </a>
+
+            <div class="sidebar-divider"></div>
+
+            <!-- อื่นๆ -->
+            <div class="sidebar-section-title">อื่นๆ</div>
+
+            <a href="#" class="sidebar-menu-item" id="menu-history">
+                <span class="sidebar-menu-icon">📊</span>
+                <span class="sidebar-menu-text">ประวัติการประเมิน</span>
+            </a>
+
+            <a href="#" class="sidebar-menu-item" id="menu-settings">
+                <span class="sidebar-menu-icon">⚙️</span>
+                <span class="sidebar-menu-text">ตั้งค่า</span>
+            </a>
+
+            <a href="#" class="sidebar-menu-item" id="menu-about">
+                <span class="sidebar-menu-icon">ℹ️</span>
+                <span class="sidebar-menu-text">เกี่ยวกับ</span>
+            </a>
+        </div>
+
+        <!-- Sidebar Footer -->
+        <div class="sidebar-footer">
+            <div class="sidebar-user-info" id="sidebar-user-info">
+                <div class="sidebar-user-avatar">👤</div>
+                <div class="sidebar-user-details">
+                    <div class="sidebar-user-name" id="sidebar-username">ผู้ใช้งาน</div>
+                    <div class="sidebar-user-email" id="sidebar-email">user@example.com</div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="slider-container" id="slider">
+
+        <div class="slide-page active" id="page-1">
+            <div class="content-wrapper">
+                <div class="card-info form-card">
+                    <h2 class="mb-4">เข้าสู่ระบบ (Login)</h2>
+                    <p class="desc-text text-center">
+                        กรอก E-mail เพื่อเริ่มต้นใช้งาน<br>
+                    </p>
+
+                    <div class="form-group">
+                        <label for="email">อีเมล</label>
+                        <input type="email" id="email" class="input-field" placeholder="66xxxxxxxxx@bcn.ac.th">
+                    </div>
+
+                    <div class="btn-group single-btn">
+                        <button class="btn-next full-width" id="login-btn">เข้าสู่ระบบ</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide-page" id="page-2">
+            <div class="content-wrapper">
+                <div class="card-info form-card">
+                    <h2 class="mb-4 title-sm" style="color: #004aad; font-size: 1.5rem; line-height: 1.5;">
+                        พี่ๆมาเป็นเพื่อนกับน้องโอบกอด<br>
+                        ก่อนไปประเมินกันค่ะ
+                    </h2>
+
+                    <div class="profile-upload-container">
+                        <div class="profile-preview" id="profile-preview"
+                            onclick="document.getElementById('profile-upload').click()">
+                            <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" id="preview-img"
+                                alt="Upload">
+                        </div>
+
+                        <input type="file" id="profile-upload" accept="image/*" style="display:none">
+
+                        <span class="upload-hint"
+                            onclick="document.getElementById('profile-upload').click()">แตะเพื่อเปลี่ยนรูป</span>
+                    </div>
+
+                    <div class="form-grid">
+                        <div class="form-group full-width-group">
+                            <label>ชื่อผู้ใช้งาน</label>
+                            <input type="text" id="user-name" class="input-field" placeholder="ชื่อเล่น">
+                        </div>
+
+                        <div class="form-group half-width-group">
+                            <label>เพศ</label>
+                            <select id="user-gender" class="input-field">
+                                <option value="">เลือกเพศ</option>
+                                <option value="male">ชาย</option>
+                                <option value="female">หญิง</option>
+                                <option value="other">ทางเลือกอื่น</option>
+                            </select>
+                        </div>
+                        <div class="form-group half-width-group">
+                            <label>อายุ</label>
+                            <input type="number" id="user-age" class="input-field" placeholder="ปี">
+                        </div>
+                    </div>
+
+                    <div class="btn-group single-btn">
+                        <button class="btn-next full-width" id="save-profile-btn">บันทึกและไปต่อ ➜</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide-page" id="page-3">
+            <div class="content-wrapper">
+                <h1>สวัสดีค่ะ</h1>
+                <div class="avatar-circle">
+                    <img src="images/2.png" alt="Nurse Avatar"
+                        onerror="this.src='https://cdn-icons-png.flaticon.com/512/3304/3304567.png'">
+                </div>
+                <div class="name-pill">น้องโอบกอด</div>
+                <button class="btn-next" data-goto="page-4">รู้จักน้องโอบกอด ➜</button>
+            </div>
+        </div>
+
+        <div class="slide-page" id="page-4">
+            <div class="content-wrapper">
+                <img src="images/2.png" alt="Nurse Avatar" class="nurse-overlap"
+                    onerror="this.src='https://cdn-icons-png.flaticon.com/512/3304/3304567.png'">
+                <div class="card-info">
+                    <h2>น้องโอบกอด</h2>
+                    <p class="desc-text">
+                        เป็นนวัตกรรมแชตบอทที่สามารถ<br>
+                        <span class="highlight">ประเมิน</span>ภาวะซึมเศร้า ความเครียด และพลังใจ<br>
+                        พร้อมทั้ง<span class="highlight">ให้คำแนะนำ</span> ซึ่งพัฒนาขึ้นโดยนักศึกษา<br>
+                        พยาบาลชั้นปีที่ 3 วิทยาลัยพยาบาลบรมราชชนนี<br>
+                        กรุงเทพ ปีการศึกษา 2568
+                    </p>
+                    <div class="btn-group">
+                        <button class="btn-back" data-goto="page-3">กลับ</button>
+                        <button class="btn-next" data-goto="page-5">ถัดไป ➜</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide-page" id="page-5">
+            <div class="content-wrapper">
+                <img src="images/2.png" alt="Nurse Avatar" class="nurse-overlap2"
+                    onerror="this.src='https://cdn-icons-png.flaticon.com/512/3304/3304567.png'">
+
+                <div class="card-info privacy-card">
+                    <h2>นโยบายความเป็นส่วนตัว</h2>
+
+                    <div class="scrollable-text">
+                        <p>เว็บไซต์นี้มีวัตถุประสงค์เพื่อให้บริการ คัดกรองและประเมินสุขภาพจิตเบื้องต้น ได้แก่
+                            ภาวะซึมเศร้า ความเครียด ภาวะหมดไฟ และระดับพลังใจ พร้อมทั้ง
+                            ให้คำแนะนำในการดูแลสุขภาพจิตที่เหมาะสมกับผลการประเมิน</p>
+                        <p>เว็บไซต์จะเก็บรวบรวมข้อมูลเฉพาะที่จำเป็นต่อการให้บริการ เช่น คำตอบจากแบบประเมิน
+                            และข้อมูลการใช้งานระบบ โดย ไม่เก็บชื่อ นามสกุล ที่อยู่
+                            หรือข้อมูลอื่นใดที่สามารถระบุตัวตนของผู้ใช้งานได้</p>
+                        <p>ข้อมูลทั้งหมดจะถูกจัดเก็บในระบบที่มีมาตรการรักษาความปลอดภัยที่เหมาะสม
+                            จำกัดสิทธิ์การเข้าถึงเฉพาะผู้ที่เกี่ยวข้อง และจะถูกนำไปใช้ เพื่อการวิเคราะห์ผล การให้คำแนะนำ
+                            และการพัฒนาคุณภาพของระบบเท่านั้น</p>
+                        <p>เว็บไซต์เคารพสิทธิ์ในความเป็นส่วนตัวของผู้ใช้งาน ผู้ใช้งานสามารถ ปฏิเสธการให้ข้อมูล
+                            ยุติการใช้งาน หรือถอนความยินยอมได้ทุกเมื่อ โดยจะไม่กระทบต่อสิทธิ์ใด ๆ ของผู้ใช้งาน</p>
+                        <p>ข้อมูลที่ได้รับจะถูกนำเสนอหรือใช้ในรูปแบบ ข้อมูลภาพรวมที่ไม่สามารถระบุตัวบุคคลได้
+                            และจะไม่เปิดเผยข้อมูลแก่บุคคลภายนอก เว้นแต่เป็นไปตามที่กฎหมายกำหนด</p>
+                    </div>
+
+                    <div class="checkbox-wrapper">
+                        <input type="checkbox" id="policy-agree">
+                        <label for="policy-agree">
+                            รับทราบและยินยอมทั้งนโยบายความเป็นส่วนตัว <br>และ<span
+                                class="text-red">เงื่อนไขข้อตกลงการใช้บริการ</span>
+                        </label>
+                    </div>
+
+                    <div class="action-buttons">
+                        <button class="btn-decline" data-goto="page-4">ไม่ยอมรับ</button>
+
+                        <button class="btn-accept" id="btn-accept-policy">ยอมรับ</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide-page" id="page-6">
+            <div class="progress-bar-container">
+                <div class="bar active"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+
+            <div class="content-wrapper">
+                <img src="images/2.png" alt="Nurse Avatar" class="nurse-overlap2"
+                    onerror="this.src='https://cdn-icons-png.flaticon.com/512/3304/3304567.png'">
+
+                <div class="card-info">
+                    <h2 class="title-sm">ตรวจสอบภาวะสุขภาพจิตใจ<br>ได้ง่าย ๆ ด้วยตนเอง</h2>
+
+                    <div class="list-container">
+                        <div class="list-item">
+                            <span class="num">1.</span>
+                            <span class="text">แบบประเมิน ST-5 เพื่อคัดกรองระดับความเครียดเบื้องต้น</span>
+                        </div>
+                        <div class="list-item">
+                            <span class="num">2.</span>
+                            <span class="text">แบบประเมิน RQ เพื่อประเมินระดับพลังใจ</span>
+                        </div>
+                        <div class="list-item">
+                            <span class="num">3.</span>
+                            <span class="text">แบบประเมิน 2Q, 9Q และ 8Q ตามลำดับ
+                                เพื่อคัดกรองและประเมินภาวะซึมเศร้า</span>
+                        </div>
+                        <div class="list-item">
+                            <span class="num">4.</span>
+                            <span class="text">แบบประเมิน Burn out เพื่อประเมินภาวะหมดไฟ</span>
+                        </div>
+                    </div>
+
+                    <div class="btn-group">
+                        <button class="btn-back" data-goto="page-5">กลับ</button>
+                        <button class="btn-next" data-goto="page-7">ถัดไป ➜</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide-page" id="page-7">
+            <div class="progress-bar-container">
+                <div class="bar active"></div>
+                <div class="bar active"></div>
+                <div class="bar"></div>
+            </div>
+
+            <div class="content-wrapper">
+                <img src="images/2.png" alt="Nurse Avatar" class="nurse-overlap2"
+                    onerror="this.src='https://cdn-icons-png.flaticon.com/512/3304/3304567.png'">
+
+                <div class="card-info">
+                    <h2 class="title-sm">วิธีดูแลใจเมื่อไม่ไหว</h2>
+
+                    <div class="list-container">
+                        <div class="list-item"><span class="num">1.</span><span class="text">นัดพบผู้ทรงคุณวุฒิ</span>
+                        </div>
+                        <div class="list-item"><span class="num">2.</span><span
+                                class="text">ปรึกษากับผู้เชี่ยวชาญ</span></div>
+                        <div class="list-item"><span class="num">3.</span><span class="text">พูดคุยกับน้องโอบกอด</span>
+                        </div>
+                        <div class="list-item"><span class="num">4.</span><span class="text">เล่นเกมส์</span></div>
+                        <div class="list-item"><span class="num">5.</span><span class="text">ดูหนัง</span></div>
+                        <div class="list-item"><span class="num">6.</span><span class="text">ฟังเพลง</span></div>
+                    </div>
+
+                    <div class="btn-group">
+                        <button class="btn-back" data-goto="page-6">กลับ</button>
+                        <button class="btn-next" data-goto="page-8">ถัดไป ➜</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide-page" id="page-8">
+            <div class="progress-bar-container">
+                <div class="bar active"></div>
+                <div class="bar active"></div>
+                <div class="bar active"></div>
+            </div>
+
+            <div class="content-wrapper">
+                <img src="images/2.png" alt="Nurse Avatar" class="nurse-overlap2"
+                    onerror="this.src='https://cdn-icons-png.flaticon.com/512/3304/3304567.png'">
+
+                <div class="card-info">
+                    <div class="header-pill">
+                        โปรดอ่านข้อความสำคัญนี้ก่อนเริ่มต้นครับ
+                    </div>
+
+                    <p class="sub-text-center">
+                        น้องโอบกอดเป็นเพื่อนที่พร้อมรับฟังและตอบกลับอัตโนมัติ ด้วยความเข้าใจ แต่ไม่สามารถทดแทนการ
+                        วินิจฉัยจากผู้เชี่ยวชาญด้านสุขภาพจิตได้ครับ
+                    </p>
+
+                    <div class="list-container small-text">
+                        <div class="list-item">
+                            <span class="num">1.</span>
+                            <span class="text">แบบประเมินสุขภาพใจเบื้องต้นนี้
+                                จัดทำขึ้นเพื่อช่วยให้คุณได้สำรวจและรับรู้ถึงระดับความเครียด ภาวะซึมเศร้า
+                                และความเสี่ยงต่อการทำร้ายตนเอง โดยอ้างอิงจากแบบประเมินที่ได้รับการยอมรับจากกรมสุขภาพจิต
+                                กระทรวงสาธารณสุข</span>
+                        </div>
+                        <div class="list-item">
+                            <span class="num">2.</span>
+                            <span class="text">หากคุณรู้สึกไม่สบายใจอย่างมาก มีความทุกข์ หรือมีความเสี่ยงใดๆ
+                                ที่เป็นอันตรายต่อตนเอง กรุณาอย่าลังเลที่จะติดต่อผู้เชี่ยวชาญด้านสุขภาพจิต
+                                หรือหน่วยบริการสุขภาพจิตใกล้บ้านของคุณทันทีครับ</span>
+                        </div>
+                    </div>
+
+                    <div class="warning-pill">
+                        โปรดจำไว้ว่า: ผลลัพธ์ที่ได้เป็นเพียงการประเมินเบื้องต้น และไม่ใช่การวินิจฉัยทางการแพทย์
+                    </div>
+
+                    <div class="btn-group">
+                        <button class="btn-back" data-goto="page-7">กลับ</button>
+                        <button class="btn-next" data-goto="page-9">รับทราบ ➜</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide-page" id="page-9">
+            <div class="content-wrapper">
+                <div class="card-info step-card">
+                    <h2>แนะนำขั้นตอนการประเมิน</h2>
+
+                    <div class="review-pill">ทวนขั้นตอนได้ ที่นี่</div>
+
+                    <div class="timeline-container">
+
+                        <div class="timeline-item">
+                            <div class="timeline-icon">1</div>
+                            <div class="timeline-content">
+                                กรอกข้อมูลผู้ใช้งาน
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-icon">2</div>
+                            <div class="timeline-content center-align">
+                                <div class="bold-text">ทำแบบประเมิน</div>
+                                <div class="sub-list">
+                                    ST-5<br>RQ<br>2Q<br>9Q<br>8Q<br>Burn out
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-icon">3</div>
+                            <div class="timeline-content">
+                                แปรผลจากแบบประเมิน
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-icon">4</div>
+                            <div class="timeline-content">
+                                เลือกช่องทางการให้คำปรึกษา
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-icon">5</div>
+                            <div class="timeline-content">
+                                ประเมินความพึงพอใจ
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <button class="btn-pink" data-goto="page-10">เข้าใจแล้ว</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide-page" id="page-10">
+            <div class="content-wrapper">
+                <img src="images/2.png" alt="Nurse Avatar" class="nurse-overlap2"
+                    onerror="this.src='https://cdn-icons-png.flaticon.com/512/3304/3304567.png'">
+                <div class="card-info selection-card">
+                    <h2 class="mb-4">เลือกแบบประเมิน</h2>
+                    <p class="desc-text text-center">
+                        สวัสดีคุณ <span id="display-name" class="highlight">...</span><br>
+                        วันนี้น้องโอบกอดช่วยอะไรดีคะ?
+                    </p>
+
+                    <button class="menu-btn btn-st5" id="btn-menu-st5">
+                        <div class="menu-icon">😰</div>
+                        <div class="menu-text">
+                            <h3>ความเครียด</h3><span>(ST-5)</span>
+                        </div>
+                        <div class="menu-arrow">➜</div>
+                    </button>
+
+                    <button class="menu-btn btn-2q" id="btn-menu-2q">
+                        <div class="menu-icon">😔</div>
+                        <div class="menu-text">
+                            <h3>ซึมเศร้า</h3><span>(2Q)</span>
+                        </div>
+                        <div class="menu-arrow">➜</div>
+                    </button>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="slide-page" id="page-11">
+            <div class="content-wrapper">
+                <div class="card-info question-card">
+                    <h2 id="question-text">Loading...</h2>
+                    <div id="question-progress"></div>
+                    <div class="options-container">
+                        <button class="btn-choice btn-st5-choice" data-score="0">แทบไม่มี</button>
+                        <button class="btn-choice btn-st5-choice" data-score="1">เป็นบางครั้ง</button>
+                        <button class="btn-choice btn-st5-choice" data-score="2">บ่อยครั้ง</button>
+                        <button class="btn-choice btn-st5-choice" data-score="3">เป็นประจำ</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="slide-page" id="page-12">
+            <div class="content-wrapper">
+                <div class="card-info result-card">
+                    <h2 class="mb-2">ผลการประเมิน</h2>
+                    <div class="score-circle" id="result-score-circle"><span id="final-score">0</span></div>
+                    <div class="result-title" id="result-level">...</div>
+                    <p class="result-desc" id="result-advice">...</p>
+                    <div class="btn-group single-btn">
+                        <button class="btn-next full-width" id="btn-back-menu-st5">
+                            กลับหน้าเมนูหลัก ➜
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="slide-page" id="page-rq-intro">
+            <div class="content-wrapper">
+                <div class="card-info step-card">
+                    <img src="images/1.png" alt="Nurse" class="nurse-overlap">
+
+                    <h2 class="mt-4 mb-3" style="color: #0056b3;">แบบประเมินพลังใจ<br>(RQ)</h2>
+
+                    <div class="text-left" style="width: 100%; margin-bottom: 20px;">
+                        <p style="color: #555; font-size: 1 rem; line-height: 1.6;">
+                            เนื่องจากท่านมีความเครียดในระดับที่ต้องดูแล<br><br>
+                            เราขอเชิญท่านทำ <strong>"แบบประเมินพลังใจ"</strong>
+                            เพื่อให้ทราบถึงศักยภาพในการฟื้นฟูจิตใจและรับมือกับปัญหาต่างๆ ของท่านค่ะ
+                        </p>
+                    </div>
+
+                    <div class="btn-group single-btn">
+                        <button class="btn-next full-width" id="btn-start-rq-intro">
+                            เข้าสู่คำชี้แจง ➜
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="slide-page" id="page-rq-instruction">
+            <div class="content-wrapper">
+                <div class="card-info step-card" style="padding-bottom: 20px;">
+                    <img src="images/2.png" alt="Nurse" class="nurse-overlap2">
+
+                    <h2 class="mt-4 mb-2" style="color: #0056b3;">คำชี้แจง</h2>
+                    <p style="color: #666; font-size: 0.9rem; margin-bottom: 15px;">
+                        เกณฑ์การประเมินระดับความเครียด (1-10)
+                    </p>
+
+                    <div class="rating-criteria-container">
+
+                        <div class="rating-item level-green">
+                            <div class="rating-badge">1</div>
+                            <div class="rating-text">ไม่เครียดเลย / รู้สึกปกติ</div>
+                        </div>
+                        <div class="rating-item level-green">
+                            <div class="rating-badge">2</div>
+                            <div class="rating-text">เครียดเล็กน้อยมาก / แทบไม่ส่งผลต่อชีวิต</div>
+                        </div>
+                        <div class="rating-item level-green">
+                            <div class="rating-badge">3</div>
+                            <div class="rating-text">เครียดเล็กน้อย แต่ยังจัดการได้ดี</div>
+                        </div>
+                        <div class="rating-item level-green">
+                            <div class="rating-badge">4</div>
+                            <div class="rating-text">เครียดระดับต่ำ มีผลกระทบเล็กน้อย</div>
+                        </div>
+
+                        <div class="rating-item level-yellow">
+                            <div class="rating-badge">5</div>
+                            <div class="rating-text">เครียดปานกลาง เริ่มส่งผลต่อสมาธิหรืออารมณ์</div>
+                        </div>
+                        <div class="rating-item level-yellow">
+                            <div class="rating-badge">6</div>
+                            <div class="rating-text">เครียดชัดเจน ต้องใช้ความพยายามจัดการ</div>
+                        </div>
+                        <div class="rating-item level-orange">
+                            <div class="rating-badge">7</div>
+                            <div class="rating-text">เครียดค่อนข้างมาก เริ่มรบกวนการทำงานหรือการใช้ชีวิต</div>
+                        </div>
+
+                        <div class="rating-item level-red">
+                            <div class="rating-badge">8</div>
+                            <div class="rating-text">เครียดมาก กระทบต่อความคิด อารมณ์ และความสัมพันธ์</div>
+                        </div>
+                        <div class="rating-item level-red">
+                            <div class="rating-badge">9</div>
+                            <div class="rating-text">เครียดรุนแรงมาก มีอาการทางกาย/อารมณ์ชัดเจน</div>
+                        </div>
+                        <div class="rating-item level-red">
+                            <div class="rating-badge">10</div>
+                            <div class="rating-text">เครียดมากที่สุด ควบคุมตนเองลำบาก มีผลต่อทุกด้านของชีวิต</div>
+                        </div>
+
+                    </div>
+                    <div style="font-size: 0.8rem; color: #aaa; margin-top: 5px;">
+                        ▼ เลื่อนเพื่อดูเพิ่มเติม
+                    </div>
+
+                    <div class="btn-group single-btn" style="margin-top: 15px; width: 100%;">
+                        <button class="btn-next full-width" id="btn-start-rq-quiz">
+                            เริ่มทำแบบประเมิน ➜
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="slide-page" id="page-rq-quiz">
+            <div class="content-wrapper">
+                <div class="card-info question-card">
+
+                    <div style="width: 100%; margin-bottom: 20px;">
+                        <div
+                            style="display: flex; justify-content: space-between; margin-bottom: 5px; color: #666; font-size: 0.9rem;">
+                            <span>ข้อที่ <span id="rq-current-no">1</span>/3</span>
+                            <span>ความเข้มแข็งทางใจ</span>
+                        </div>
+                        <div class="progress-container">
+                            <div class="progress-bar-fill" id="rq-progress-bar" style="width: 33%;"></div>
+                        </div>
+                    </div>
+
+                    <h2 id="rq-question-text"
+                        style="color: #0056b3; margin-bottom: 20px; min-height: 80px; display: flex; align-items: center; justify-content: center;">
+                        ...กำลังโหลดคำถาม...
+                    </h2>
+
+                    <div
+                        style="width: 100%; text-align: left; margin-bottom: 5px; font-size: 0.9rem; color: #2e7d32; font-weight: bold;">
+                        ↑ มากที่สุด (เขียว)
+                    </div>
+
+                    <div class="rating-scale-container">
+                        <div class="rating-row">
+                            <button class="btn-rating rate-10" onclick="answerRQ(10)">10</button>
+                            <button class="btn-rating rate-9" onclick="answerRQ(9)">9</button>
+                            <button class="btn-rating rate-8" onclick="answerRQ(8)">8</button>
+                            <button class="btn-rating rate-7" onclick="answerRQ(7)">7</button>
+                            <button class="btn-rating rate-6" onclick="answerRQ(6)">6</button>
+                        </div>
+                        <div class="rating-row">
+                            <button class="btn-rating rate-5" onclick="answerRQ(5)">5</button>
+                            <button class="btn-rating rate-4" onclick="answerRQ(4)">4</button>
+                            <button class="btn-rating rate-3" onclick="answerRQ(3)">3</button>
+                            <button class="btn-rating rate-2" onclick="answerRQ(2)">2</button>
+                            <button class="btn-rating rate-1" onclick="answerRQ(1)">1</button>
+                        </div>
+                    </div>
+
+                    <div
+                        style="width: 100%; text-align: right; margin-top: 5px; font-size: 0.9rem; color: #ff3b30; font-weight: bold;">
+                        น้อยที่สุด (แดง) ↓
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="slide-page" id="page-rq-result">
+            <div class="content-wrapper">
+                <div class="card-info result-card" style="padding-top: 20px;">
+
+                    <h2 style="color: #0056b3; margin-bottom: 10px;">ผลการประเมิน RQ</h2>
+
+                    <div id="rq-result-circle" class="result-circle">
+                        <span id="rq-result-score">0</span>
+                        <small style="font-size: 0.8rem;">คะแนน</small>
+                    </div>
+
+                    <h1 id="rq-result-level" class="result-title" style="margin-bottom: 15px;">
+                        ...
+                    </h1>
+
+                    <div
+                        style="background-color: #f8f9fa; border-radius: 15px; padding: 20px; margin-bottom: 25px; width: 100%; box-shadow: inset 0 2px 5px rgba(0,0,0,0.05);">
+                        <p id="rq-result-msg" style="font-size: 1.1rem; color: #555; line-height: 1.6; margin: 0;">
+                            ...
+                        </p>
+                    </div>
+
+                    <div class="btn-group single-btn">
+                        <button class="btn-next full-width" data-goto="page-10">
+                            กลับสู่หน้าเมนูหลัก ➜
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="slide-page" id="page-2q-intro">
+            <div class="content-wrapper">
+                <div class="card-info form-card" style="background-color: #f7e69f;">
+                    <h2 class="mb-4" style="color: #63332c; font-weight: 700; font-size: 1.75rem;">
+                        แบบประเมิน<br>
+                        คัดกรองโรคซึมเศร้า
+                    </h2>
+
+                    <div class="circle-2q-display">
+                        2Q
+                    </div>
+
+                    <div class="btn-group single-btn mt-5">
+                        <button class="btn-next full-width btn-pink" id="btn-start-2q-real">ไปต่อ</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="slide-page" id="page-13">
+            <div class="content-wrapper">
+
+                <div class="top-quiz-info">
+                    <div class="progress-bar-2q">
+                        <div class="progress-fill" id="progress-2q-fill"></div>
+                    </div>
+                    <h2 class="question-count" id="question-count-2q">Q: 1/2</h2>
+                </div>
+
+                <div class="card-info question-card">
+                    <div class="question-box-2q">
+                        <h2 id="question-text-2q">Loading...</h2>
+                    </div>
+
+                    <div class="options-container-2q">
+                        <button class="btn-2q-option btn-no" id="btn-2q-no">
+                            <div class="emoji">😊</div>
+                            <div class="label">ไม่มี</div>
+                        </button>
+                        <button class="btn-2q-option btn-yes" id="btn-2q-yes">
+                            <div class="emoji">😔</div>
+                            <div class="label">มี</div>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="slide-page" id="page-14">
+            <div class="content-wrapper">
+                <div class="card-info result-card">
+                    <div class="result-icon-large" id="icon-result-2q"></div>
+                    <div class="result-title" id="title-result-2q"></div>
+                    <p class="result-desc" id="desc-result-2q"></p>
+                    <div class="btn-group single-btn"><button class="btn-next full-width"
+                            id="btn-action-2q">ตกลง</button></div>
+                </div>
+            </div>
+        </div>
+        <div class="slide-page" id="page-15">
+            <div class="content-wrapper">
+                <div class="card-info question-card">
+                    <h2 id="question-text-9q">Loading...</h2>
+                    <div class="options-container">
+                        <button class="btn-choice btn-9q-choice" data-score="0">ไม่มีเลย</button>
+                        <button class="btn-choice btn-9q-choice" data-score="1">เป็นบางวัน</button>
+                        <button class="btn-choice btn-9q-choice" data-score="2">เป็นบ่อย</button>
+                        <button class="btn-choice btn-9q-choice" data-score="3">เป็นทุกวัน</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="slide-page" id="page-16">
+            <div class="content-wrapper">
+                <div class="card-info result-card">
+                    <div class="score-circle" id="circle-9q"><span id="score-text-9q">0</span></div>
+                    <div class="result-title" id="level-9q"></div>
+                    <p class="result-desc" id="advice-9q"></p>
+                    <div class="btn-group single-btn"><button class="btn-next full-width" id="btn-next-step-9q"
+                            data-goto="page-10">กลับหน้าเมนูหลัก ➜</button></div>
+                </div>
+            </div>
+        </div>
+        <div class="slide-page" id="page-17">
+            <div class="content-wrapper">
+                <div class="card-info form-card text-center">
+
+                    <h3 class="mb-3">แบบประเมินความเสี่ยง (8Q)</h3>
+
+                    <div class="progress-container mb-2">
+                        <div id="q8-bar" class="progress-bar-fill"></div>
+                    </div>
+
+                    <p id="q8-progress-text" class="text-muted mb-4" style="font-size: 0.9rem;">
+                        กำลังโหลด...
+                    </p>
+
+                    <div class="question-box mb-4">
+                        <h4 id="question-text-8q" class="mb-3" style="line-height: 1.6; font-size: 1.2rem;">
+                            ...
+                        </h4>
+                    </div>
+
+                    <div class="btn-group-vertical" style="gap: 15px; width: 100%;">
+                        <button class="btn-choice btn-no" id="btn-8q-no">
+                            ไม่มี
+                        </button>
+                        <button class="btn-choice btn-yes" id="btn-8q-yes">
+                            มี
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="slide-page" id="page-18">
+            <div class="content-wrapper">
+                <div class="card-info form-card text-center">
+                    <h3 class="mb-4">ผลการประเมิน 8Q</h3>
+
+                    <div id="score-circle-8q" class="result-circle">
+                        <span id="score-text-8q" style="font-size: 3rem; font-weight: bold;">0</span>
+                        <span style="font-size: 1rem;">คะแนน</span>
+                    </div>
+
+                    <h4 id="level-text-8q" class="mt-3 mb-2" style="font-weight: 700;">
+                        กำลังประมวลผล...
+                    </h4>
+
+                    <p id="message-text-8q" class="text-muted mb-4" style="font-size: 1.1rem;">
+                    </p>
+
+                    <div id="emergency-box"
+                        style="display: none; background-color: #ffebee; border: 1px solid #ffcdd2; border-radius: 10px; padding: 15px; margin-bottom: 20px;">
+                        <h5 style="color: #c62828; font-weight: bold;">⚠️ คำแนะนำเร่งด่วน</h5>
+                        <p style="color: #c62828; margin-bottom: 5px;">ท่านมีความเสี่ยงสูง ควรปรึกษาผู้เชี่ยวชาญทันที
+                        </p>
+                        <a href="tel:1323" class="btn btn-danger btn-sm">โทรสายด่วนสุขภาพจิต 1323</a>
+                    </div>
+
+                    <div class="btn-group single-btn">
+                        <button class="btn-next full-width" data-goto="page-10">
+                            กลับสู่หน้าหลัก ➜
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- เพิ่มใน index.html ก่อน </div> (ปิด slider-container) -->
+
+        <!-- หน้ากิจกรรมบำบัด -->
+        <div class="slide-page" id="page-activities">
+            <div class="content-wrapper">
+                <div class="card-info selection-card" style="padding: 40px 20px;">
+
+                    <h2 class="mb-4" style="color: #0056b3; font-size: 2rem;">
+                        🎨 กิจกรรมบำบัด
+                    </h2>
+
+                    <p class="desc-text text-center" style="margin-bottom: 30px;">
+                        เลือกกิจกรรมที่คุณสนใจ เพื่อผ่อนคลายและดูแลใจตัวเอง
+                    </p>
+
+                    <!-- ปุ่มเลือกกิจกรรม -->
+                    <button class="menu-btn" id="btn-activity-game"
+                        style="background: linear-gradient(135deg, #fff5e6 0%, #ffe0b3 100%);">
+                        <div class="menu-icon" style="background: rgba(255, 193, 7, 0.3);">🎮</div>
+                        <div class="menu-text">
+                            <h3 style="color: #cc7a00;">เล่นเกม</h3>
+                            <span style="color: #cc7a00;">ผ่อนคลายด้วยเกมสนุกๆ</span>
+                        </div>
+                        <div class="menu-arrow" style="color: #cc7a00;">➜</div>
+                    </button>
+
+                    <button class="menu-btn" id="btn-activity-music"
+                        style="background: linear-gradient(135deg, #e6f2ff 0%, #cce0ff 100%);">
+                        <div class="menu-icon" style="background: rgba(77, 166, 255, 0.3);">🎵</div>
+                        <div class="menu-text">
+                            <h3 style="color: #0056b3;">ฟังเพลง</h3>
+                            <span style="color: #0056b3;">เพลงบรรเลงเพื่อการผ่อนคลาย</span>
+                        </div>
+                        <div class="menu-arrow" style="color: #0056b3;">➜</div>
+                    </button>
+
+                    <button class="menu-btn" id="btn-activity-fortune"
+                        style="background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%);">
+                        <div class="menu-icon" style="background: rgba(156, 39, 176, 0.3);">🔮</div>
+                        <div class="menu-text">
+                            <h3 style="color: #7b1fa2;">ดูดวง</h3>
+                            <span style="color: #7b1fa2;">ทำนายดวงและคำแนะนำประจำวัน</span>
+                        </div>
+                        <div class="menu-arrow" style="color: #7b1fa2;">➜</div>
+                    </button>
+
+                    <!-- ✅ ลบปุ่มกลับหน้าหลักออก - ใช้ Sidebar แทน -->
+
+                </div>
+            </div>
+        </div>
+
+        <!-- หน้าเล่นเกม -->
+        <div class="slide-page" id="page-activity-game">
+            <div class="content-wrapper">
+                <div class="card-info" style="padding: 30px 20px; text-align: center;">
+
+                    <h2 style="color: #cc7a00; margin-bottom: 20px;">🎮 เล่นเกม</h2>
+
+                    <div style="
+        background: #f5f5f5; 
+        border-radius: 15px; 
+        padding: 40px 20px; 
+        margin: 20px 0;
+        min-height: 300px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+      ">
+                        <div style="font-size: 4rem; margin-bottom: 20px;">🎯</div>
+                        <p style="color: #666; font-size: 1.1rem;">
+                            เกมกำลังพัฒนา<br>
+                            เร็วๆ นี้นะครับ!
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- หน้าฟังเพลง -->
+        <div class="slide-page" id="page-activity-music">
+            <div class="content-wrapper">
+                <div class="card-info" style="padding: 30px 20px; text-align: center;">
+
+                    <h2 style="color: #0056b3; margin-bottom: 20px;">🎵 ฟังเพลง</h2>
+
+                    <div style="
+        background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%); 
+        border-radius: 15px; 
+        padding: 40px 20px; 
+        margin: 20px 0;
+        min-height: 300px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+      ">
+                        <div style="font-size: 4rem; margin-bottom: 20px;">🎧</div>
+                        <p style="color: #1565c0; font-size: 1.1rem;">
+                            ห้องเพลงบำบัด<br>
+                            เร็วๆ นี้นะครับ!
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- หน้าดูดวง -->
+        <div class="slide-page" id="page-activity-fortune">
+            <div class="content-wrapper">
+                <div class="card-info" style="padding: 30px 20px; text-align: center;">
+
+                    <h2 style="color: #7b1fa2; margin-bottom: 20px;">🔮 ดูดวง</h2>
+
+                    <div style="
+        background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%); 
+        border-radius: 15px; 
+        padding: 40px 20px; 
+        margin: 20px 0;
+        min-height: 300px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+      ">
+                        <div style="font-size: 4rem; margin-bottom: 20px;">✨</div>
+                        <p style="color: #7b1fa2; font-size: 1.1rem;">
+                            ดวงชะตาประจำวัน<br>
+                            เร็วๆ นี้นะครับ!
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div id="loading-overlay" class="loading-overlay hidden">
+        <div class="spinner">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+        </div>
+        <p class="loading-text">กำลังโหลด...</p>
+    </div>
+
+    <script type="module" src="js/main.js"></script>
+    <script type="module" src="js/validation.js"></script>
+    <script type="module" src="js/error-handler.js"></script>
+    <script type="module" src="js/accessibility.js"></script>
+    <script type="module" src="js/navigation.js"></script>
+    <script type="module" src="js/st5-assessment.js"></script>
+    <script type="module" src="js/rq-assessment.js"></script>
+    <script type="module" src="js/2q-assessment.js"></script>
+    <script type="module" src="js/9q-assessment.js"></script>
+    <script type="module" src="js/8q-assessment.js"></script>
+    <script type="module" src="js/sidebar.js"></script>
+
+</body>
+
+</html>
