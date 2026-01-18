@@ -1,4 +1,4 @@
-// ไฟล์: js/main.js (ปรับปรุง - เพิ่ม Auto Login)
+// ไฟล์: js/main.js (ฉบับสมบูรณ์ - แก้ไขเรื่อง User ใหม่ + Auto Login)
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 import {
@@ -28,7 +28,7 @@ import { initGameActivity } from "./game-activity.js";
 import { initMusicActivity } from "./music-activity.js";
 import { initFortuneActivity } from "./fortune-activity.js";
 
-// ✅ แก้ไขบรรทัดนี้ - Import เพิ่มเติมเพื่อใช้ใน Auto Login
+// ✅ Import เพิ่มเติมเพื่อใช้ใน Auto Login และ Sidebar
 import {
   initSidebar,
   loadUserInfo,
@@ -165,6 +165,7 @@ async function handleLogin() {
       oldData = querySnapshot.docs[0].data();
     }
 
+    // อัปเดตข้อมูลการล็อกอินล่าสุดลง Firestore
     await setDoc(
       doc(db, "users", user.uid),
       {
@@ -180,11 +181,28 @@ async function handleLogin() {
     let titleMsg = "ยินดีต้อนรับสมาชิกใหม่ครับ!";
     let textMsg = "กำลังพาเข้าสู่ระบบ...";
 
+    // ------------------------------------------------------------------
+    // ✅ จุดแก้ไขสำคัญ: จัดการ LocalStorage ทั้ง User เก่า และ User ใหม่
+    // ------------------------------------------------------------------
     if (oldData) {
+      // 1. กรณี User เก่า (เคยมีประวัติ): ดึงข้อมูลเดิมมาแสดง
       titleMsg = "ยินดีต้อนรับกลับครับ!";
       textMsg = "กำลังดึงข้อมูลเดิม...";
       restoreUserData(oldData);
+    } else {
+      // 2. ✅ กรณี User ใหม่ (ครั้งแรก): ต้องสร้าง Profile เบื้องต้นลง LocalStorage ทันที
+      // เพื่อให้เวลารีเฟรชหน้า หรือเปลี่ยนหน้า แอปจะยังจำ Email/UID ได้
+      const newUserProfile = {
+        email: email,
+        uid: user.uid,
+        username: "",
+        age: "",
+        gender: "",
+      };
+      saveUserProfile(newUserProfile);
+      console.log("✅ บันทึกข้อมูลสมาชิกใหม่ลง LocalStorage แล้ว");
     }
+    // ------------------------------------------------------------------
 
     Swal.fire({
       icon: "success",
@@ -194,9 +212,10 @@ async function handleLogin() {
       timer: 1500,
       timerProgressBar: true,
     }).then(() => {
+      // ไปหน้าลงทะเบียนประวัติ (page-2)
       goToPage("page-2");
 
-      // รีเฟรช Sidebar Visibility หลัง Login
+      // รีเฟรช Sidebar Visibility
       if (updateSidebarVisibility) {
         setTimeout(() => {
           updateSidebarVisibility("page-2");
@@ -241,6 +260,8 @@ function restoreUserData(oldData) {
     if (previewImg) previewImg.src = oldData.profileImage;
     currentProfileImageBase64 = oldData.profileImage;
   }
+
+  // บันทึกข้อมูลเก่าลง LocalStorage เพื่อให้แอปจำได้
   saveUserProfile(oldData);
 }
 
@@ -262,7 +283,11 @@ async function handleSaveProfile() {
   }
 
   const user = auth.currentUser;
-  if (!user) {
+
+  // กรณี User อาจจะหลุด ให้ลองดึงจาก LocalStorage ดู UID
+  const localUser = getUserProfile();
+
+  if (!user && !localUser) {
     Swal.fire({
       icon: "error",
       title: "เซสชันหมดอายุ",
@@ -315,15 +340,20 @@ async function handleSaveProfile() {
       profileData.profileImage = currentProfileImageBase64;
     }
 
-    await setDoc(doc(db, "users", user.uid), profileData, { merge: true });
+    // บันทึกลง Firestore (ถ้ามี Auth User)
+    if (user) {
+      await setDoc(doc(db, "users", user.uid), profileData, { merge: true });
+    }
 
-    const oldProfile = getUserProfile() || {};
-    const emailToKeep = oldProfile.email || "";
+    // รวมข้อมูลเพื่อบันทึกลง LocalStorage
+    // รักษา Email เดิมไว้ถ้ามี
+    const emailToKeep = localUser && localUser.email ? localUser.email : "";
+    const uidToKeep = user ? user.uid : localUser ? localUser.uid : "";
 
     saveUserProfile({
       ...profileData,
-      email: emailToKeep, // ใช้อีเมลเดิม ไม่ใช้ user.email
-      uid: user.uid,
+      email: emailToKeep,
+      uid: uidToKeep,
     });
 
     hideLoading();
@@ -444,14 +474,15 @@ function checkAutoLogin() {
   const user = getUserProfile();
 
   // ถ้ามีข้อมูลใน LocalStorage แสดงว่าเคย Login แล้ว
-  if (user) {
-    console.log("🔄 Auto Login: พบผู้ใช้เดิม", user.username);
+  if (user && user.email) {
+    console.log("🔄 Auto Login: พบผู้ใช้เดิม", user.username || user.email);
 
     // 1. อัปเดตข้อมูลใน Sidebar
     if (loadUserInfo) loadUserInfo();
 
     // 2. ข้ามไปหน้าเมนูหลัก (page-10) ทันที
-    // (ถ้าอยากให้ไปหน้าอื่น แก้ตรงนี้ได้เลยครับ)
+    // (หมายเหตุ: ถ้าคุณอยากให้ user กลับไปหน้าล่าสุดที่เคยอยู่ ก็ต้องเก็บ lastPage เพิ่ม)
+    // แต่เบื้องต้นให้ไป page-10 (หน้าหลัก) ก็สะดวกดีครับ
     goToPage("page-10");
 
     // 3. ปรับ Sidebar ให้แสดงถูกต้อง
@@ -474,7 +505,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // เริ่มต้น Sidebar
   initSidebar();
 
-  // ✅ เรียกใช้ Auto Login
+  // ✅ เรียกใช้ Auto Login (จะทำงานทันทีที่เปิดเว็บ)
   checkAutoLogin();
 
   document.body.addEventListener("click", (e) => {
