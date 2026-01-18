@@ -378,3 +378,31 @@
   border-radius: 8px;
   font-weight: 700;
 }
+
+/* ========================================
+   RESPONSIVE (MOBILE) - ปรับขนาดในมือถือ
+   ======================================== */
+@media screen and (max-width: 768px) {
+  
+  /* 1. ลดความกว้างของ Sidebar */
+  .sidebar {
+    width: 240px; /* ลดจาก 280px เหลือ 240px (หรือตามต้องการ) */
+  }
+
+  /* 2. ลดขนาด Padding ในส่วนหัว */
+  .sidebar-header {
+    padding: 15px; /* ลดช่องว่างรอบๆ ลงนิดหน่อย */
+  }
+
+  /* 3. ลดขนาดตัวอักษรและ Padding ของเมนู */
+  .sidebar-menu-item {
+    padding: 10px 15px; /* ลดความอ้วนของปุ่มเมนู */
+    font-size: 0.9rem;  /* ลดขนาดตัวหนังสือลงเล็กน้อย */
+  }
+
+  /* 4. ปรับขนาดรูปโปรไฟล์ด้านล่างให้เล็กลงหน่อย */
+  .sidebar-user-avatar {
+    width: 40px;
+    height: 40px;
+  }
+}
