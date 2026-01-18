@@ -5,7 +5,7 @@ import { getUserProfile } from "../js/storage.js";
 // ==========================================
 // ⚙️ ตั้งค่า AI
 // ==========================================
-const GEMINI_API_KEY = "AIzaSyA5YmBApfcH4gODCuh92HFVOORqiDD3MSw";
+const GEMINI_API_KEY = "AIzaSyDHpoI-ABRQXwARnxLJTMT67b0CVfLKK2c";
 
 // ✅ ใช้โมเดล gemini-2.5-flash (ตามที่มีในลิสต์ของคุณ)
 const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY}`;
@@ -187,3 +187,4 @@ document.addEventListener("DOMContentLoaded", () => {
     if (typing) typing.remove();
   }
 });
+
