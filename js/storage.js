@@ -60,24 +60,25 @@ export async function saveUserProfile(profileData) {
       STORAGE_KEYS.USER_PROFILE,
       JSON.stringify(profileData),
     );
-    console.log("✅ [Local] บันทึกโปรไฟล์ลงเครื่องสำเร็จ");
   } catch (error) {
     console.error("❌ [Local] บันทึกโปรไฟล์ไม่สำเร็จ:", error);
   }
 
   // 2. บันทึก Firebase (ถ้า Login และเชื่อมต่ออยู่)
-  if (db && auth && auth.currentUser) {
+  if (auth && auth.currentUser) {
     try {
       const uid = auth.currentUser.uid;
       const userRef = doc(db, "users", uid);
 
-      // ใช้ setDoc แบบ merge: true (อัปเดตเฉพาะส่วนที่เปลี่ยน)
+      // ✅ บันทึกทุกอย่างที่ส่งมา (รวมถึง email ที่เราเพิ่งเพิ่ม)
       await setDoc(userRef, profileData, { merge: true });
 
-      console.log("🔥 [Firebase] อัปเดตโปรไฟล์บน Cloud สำเร็จ");
+      console.log("🔥 Update Firestore Success:", profileData.email);
     } catch (error) {
-      console.error("❌ [Firebase] อัปเดตโปรไฟล์ไม่สำเร็จ:", error);
+      console.error("🔥 Firestore Error:", error);
     }
+  } else {
+    console.warn("⚠️ Auth is null/not ready, saved to Local only.");
   }
 }
 
