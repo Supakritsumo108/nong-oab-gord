@@ -9,7 +9,7 @@
   top: 0;
   left: 0;
   width: 280px;
-  height: 100vh;
+  height: 100dvh;
   background: linear-gradient(180deg, #f8f9fa 0%, #ffffff 100%);
   box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
   z-index: 1000;
