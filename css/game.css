@@ -1,0 +1,117 @@
+/* css/game.css */
+
+/* จัดกล่องเกมเป็นตาราง (Grid) */
+.game-list {
+  display: grid;
+  /* ปรับคอลัมน์อัตโนมัติ: มือถือ 1 แถว, จอใหญ่ 2-3 แถว */
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  padding-bottom: 40px;
+}
+
+/* ตัวการ์ดเกม */
+.game-card {
+  background: #ffffff;
+  border-radius: 24px; /* มุมโค้งมนพิเศษ */
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* จัดทุกอย่างกึ่งกลาง */
+  text-align: center;
+  position: relative;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 10px 30px -10px rgba(131, 166, 255, 0.2); /* เงาสีฟ้าจางๆ */
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  cursor: pointer;
+  overflow: hidden;
+}
+
+/* เอฟเฟกต์ตอนเอาเมาส์ชี้ */
+.game-card:hover {
+  box-shadow: 0 15px 35px -5px rgba(131, 166, 255, 0.4);
+  border-color: #a0c4ff;
+}
+
+/* พื้นหลังวงกลมของไอคอน */
+.game-icon {
+  font-size: 3rem; /* ไอคอนใหญ่สะใจ */
+  width: 90px;
+  height: 90px;
+  background: linear-gradient(
+    135deg,
+    #e0f2fe 0%,
+    #dbeafe 100%
+  ); /* ไล่สีฟ้าพาสเทล */
+  color: #2563eb;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 15px;
+  box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.8);
+  transition: transform 0.4s ease;
+}
+
+/* หมุนไอคอนดุ๊กดิ๊กตอน Hover */
+/* .game-card:hover .game-icon {
+  transform: rotate(10deg) scale(1.1);
+  background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+} */
+
+/* ข้อมูลเกม */
+.game-info {
+  flex-grow: 1; /* ดันปุ่มลงไปล่างสุด */
+  margin-bottom: 20px;
+}
+
+.game-info h3 {
+  font-size: 1.25rem;
+  color: #334155; /* สีเทาเข้มอมน้ำเงิน */
+  margin-bottom: 8px;
+  font-weight: 700;
+}
+
+.game-info p {
+  font-size: 0.95rem;
+  color: #64748b; /* สีเทากลาง */
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* ปุ่มกดเล่น (ปรับใหม่ให้เป็นปุ่มเต็ม) */
+.play-btn {
+  margin-top: auto;
+  background-color: #ffffff;
+  color: #4da6ff;
+  font-size: 0.95rem;
+  font-weight: bold;
+  padding: 10px 24px;
+  border-radius: 50px;
+  border: 2px solid #e0f2fe;
+  width: 80%; /* ความกว้างปุ่ม */
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+/* Hover ที่ปุ่ม หรือ Hover ที่การ์ด ก็ให้ปุ่มเปลี่ยนสี */
+.game-card:hover .play-btn {
+  background: #4da6ff;
+  border-color: #4da6ff;
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(77, 166, 255, 0.4);
+}
+
+/* ตกแต่งแยกสีตามประเภทเกม (Optional: เพิ่มลูกเล่นสีสัน) */
+/* ถ้าอยากให้แต่ละการ์ดสีไม่เหมือนกัน ใส่ logic เพิ่มใน JS หรือใช้ nth-child */
+.game-card:nth-child(2) .game-icon {
+  background: linear-gradient(135deg, #fce7f3 0%, #fbcfe8 100%);
+} /* ชมพู */
+.game-card:nth-child(3) .game-icon {
+  background: linear-gradient(135deg, #ede9fe 0%, #ddd6fe 100%);
+} /* ม่วง */
+.game-card:nth-child(4) .game-icon {
+  background: linear-gradient(135deg, #ffedd5 0%, #fed7aa 100%);
+} /* ส้ม */

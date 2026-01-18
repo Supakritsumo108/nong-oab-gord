@@ -1,0 +1,71 @@
+/* ไฟล์: css/settings.css */
+
+.settings-group {
+  background: white;
+  border-radius: 20px;
+  padding: 10px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.settings-title {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #888;
+  margin: 10px 0 10px 10px;
+  text-transform: uppercase;
+}
+
+.settings-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  border-bottom: 1px solid #f0f0f0;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  border-radius: 10px;
+}
+
+.settings-item:last-child {
+  border-bottom: none;
+}
+
+.settings-item:hover {
+  background-color: #f8f9fa;
+}
+
+.settings-label {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  font-weight: 600;
+  color: #333;
+}
+
+.settings-icon {
+  width: 35px;
+  height: 35px;
+  background-color: #e6f7ff;
+  color: #007bb5;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+}
+
+.settings-icon.danger {
+  background-color: #fff0f0;
+  color: #dc3545;
+}
+
+.settings-value {
+  color: #888;
+  font-size: 0.9rem;
+}
+
+.settings-arrow {
+  color: #ccc;
+  font-size: 1.2rem;
+}

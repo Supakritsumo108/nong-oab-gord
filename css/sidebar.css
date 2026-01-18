@@ -1,0 +1,378 @@
+/* ไฟล์: css/sidebar.css */
+
+/* ========================================
+   SIDEBAR CONTAINER
+   ======================================== */
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 280px;
+  height: 100vh;
+  background: linear-gradient(180deg, #f8f9fa 0%, #ffffff 100%);
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.3s ease-in-out;
+  overflow: hidden;
+  opacity: 1;
+  transform: translateX(-100%);
+}
+
+/* แสดง Sidebar เมื่อมี class 'visible' */
+.sidebar.active {
+  transform: translateX(0);
+}
+
+/* ========================================
+   SIDEBAR HEADER
+   ======================================== */
+
+.sidebar-header {
+  padding: 20px;
+  border-bottom: 1px solid #e0e0e0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.sidebar-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.sidebar-logo-icon {
+  width: 36px;
+  height: 36px;
+  background: linear-gradient(135deg, #4da6ff 0%, #0056b3 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.2rem;
+  font-weight: 700;
+  box-shadow: 0 2px 8px rgba(77, 166, 255, 0.3);
+}
+
+.sidebar-logo-text {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #0056b3;
+  font-family: "Mali", cursive;
+}
+
+.sidebar-close-btn {
+  display: none; /* แสดงเฉพาะมือถือ */
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: #666;
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 50%;
+  transition: background 0.2s;
+}
+
+.sidebar-close-btn:hover {
+  background: #f0f0f0;
+}
+
+/* ========================================
+   SIDEBAR MENU
+   ======================================== */
+
+.sidebar-menu {
+  flex: 1;
+  overflow-y: auto;
+  padding: 10px 0;
+}
+
+.sidebar-menu::-webkit-scrollbar {
+  width: 6px;
+}
+
+.sidebar-menu::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.sidebar-menu::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 10px;
+}
+
+.sidebar-menu-item {
+  display: flex;
+  align-items: center;
+  padding: 14px 20px;
+  margin: 4px 10px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+  color: #333;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+  gap: 12px;
+  position: relative;
+  overflow: hidden;
+}
+
+.sidebar-menu-item:hover {
+  background: #e6f2ff;
+  color: #0056b3;
+  transform: translateX(2px);
+}
+
+.sidebar-menu-item.active {
+  background: linear-gradient(135deg, #4da6ff 0%, #0056b3 100%);
+  color: white;
+  box-shadow: 0 2px 8px rgba(77, 166, 255, 0.3);
+}
+
+.sidebar-menu-item.active .sidebar-menu-icon {
+  color: white;
+}
+
+.sidebar-menu-item:active {
+  transform: scale(0.98);
+}
+
+.sidebar-menu-icon {
+  font-size: 1.3rem;
+  min-width: 24px;
+  text-align: center;
+  color: #666;
+  transition: color 0.2s;
+}
+
+.sidebar-menu-item:hover .sidebar-menu-icon {
+  color: #0056b3;
+}
+
+.sidebar-menu-text {
+  flex: 1;
+  font-family: "Mali", cursive;
+}
+
+.sidebar-menu-badge {
+  background: #ff4d4d;
+  color: white;
+  font-size: 0.7rem;
+  padding: 2px 6px;
+  border-radius: 10px;
+  font-weight: 700;
+}
+
+/* ========================================
+   SIDEBAR FOOTER
+   ======================================== */
+
+.sidebar-footer {
+  padding: 15px 20px;
+  border-top: 1px solid #e0e0e0;
+  background: white;
+}
+
+.sidebar-user-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  transition: background 0.2s;
+  cursor: pointer;
+}
+
+.sidebar-user-info:hover {
+  background: #f5f5f5;
+}
+
+.sidebar-user-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar-user-details {
+  flex: 1;
+}
+
+.sidebar-user-name {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 2px;
+}
+
+.sidebar-user-email {
+  font-size: 0.75rem;
+  color: #888;
+}
+
+/* ========================================
+   HAMBURGER BUTTON (Mobile)
+   ======================================== */
+
+.hamburger-btn {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 500;
+  background: white;
+  border: none;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: none; /* ซ่อนตั้งต้น */
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s;
+  opacity: 0;
+}
+
+/* แสดง Hamburger เมื่อมี class 'visible' */
+.hamburger-btn.visible {
+  display: flex;
+  opacity: 1;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.hamburger-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+.hamburger-btn:active {
+  transform: scale(0.95);
+}
+
+.hamburger-line {
+  width: 24px;
+  height: 3px;
+  background: #0056b3;
+  border-radius: 2px;
+  transition: all 0.3s;
+}
+
+/* Hamburger Animation */
+.hamburger-btn.active .hamburger-line:nth-child(1) {
+  transform: rotate(45deg) translate(6px, 6px);
+}
+
+.hamburger-btn.active .hamburger-line:nth-child(2) {
+  opacity: 0;
+  transform: translateX(-20px);
+}
+
+.hamburger-btn.active .hamburger-line:nth-child(3) {
+  transform: rotate(-45deg) translate(6px, -6px);
+}
+
+/* ========================================
+   OVERLAY (Mobile)
+   ======================================== */
+
+.sidebar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  display: none;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.sidebar-overlay.active {
+  display: block;
+  opacity: 1;
+}
+
+/* ========================================
+   SECTION DIVIDER
+   ======================================== */
+
+.sidebar-section-title {
+  padding: 20px 20px 8px 20px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #999;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.sidebar-divider {
+  height: 1px;
+  background: #e0e0e0;
+  margin: 10px 20px;
+}
+
+/* ========================================
+   ANIMATIONS
+   ======================================== */
+
+@keyframes slideIn {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.sidebar.active {
+  animation: slideIn 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ========================================
+   UTILITY CLASSES
+   ======================================== */
+
+.sidebar-menu-item.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.sidebar-menu-item.coming-soon::after {
+  content: "เร็วๆ นี้";
+  position: absolute;
+  right: 20px;
+  font-size: 0.7rem;
+  background: #ffb74d;
+  color: white;
+  padding: 2px 8px;
+  border-radius: 8px;
+  font-weight: 700;
+}
