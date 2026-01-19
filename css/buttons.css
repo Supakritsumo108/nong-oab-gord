@@ -1,0 +1,240 @@
+/* css/buttons.css */
+
+.btn-group {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  gap: 15px;
+}
+
+.single-btn {
+  justify-content: center;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.btn-next {
+  background-color: #79a6ff;
+  color: white;
+  border: none;
+  padding: 14px 30px;
+  border-radius: 50px;
+  font-family: "Mali", cursive;
+  font-size: 1.2rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 0 #4f7ddb;
+  margin-top: 25px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-next:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 0 #4f7ddb;
+}
+
+.btn-next:active {
+  transform: translateY(2px);
+  box-shadow: 0 2px 0 #4f7ddb;
+}
+
+.btn-back {
+  background: #f0f0f0;
+  border: 1px solid #ccc;
+  color: #666;
+  padding: 14px 25px;
+  border-radius: 50px;
+  font-family: "Mali", cursive;
+  font-size: 1.1rem;
+  cursor: pointer;
+  margin-top: 25px;
+  transition: background-color 0.2s;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.btn-back:hover {
+  background-color: #e0e0e0;
+}
+
+.btn-pink {
+  background-color: #ffb3d9;
+  color: #333;
+  border: none;
+  padding: 15px 50px;
+  border-radius: 30px;
+  font-family: "Mali", cursive;
+  font-size: 1.2rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 0 #d993b3;
+  transition: transform 0.2s, box-shadow 0.2s;
+  margin-top: 30px;
+}
+
+.btn-pink:hover {
+  transform: translateY(-2px);
+  background-color: #ff99cc;
+  box-shadow: 0 6px 0 #d993b3;
+}
+
+.btn-pink:active {
+  transform: translateY(2px);
+  box-shadow: 0 2px 0 #d993b3;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 15px;
+  margin-top: 20px;
+  width: 100%;
+}
+
+.btn-decline,
+.btn-accept {
+  flex: 1;
+  padding: 15px 0;
+  border-radius: 30px;
+  border: none;
+  font-family: "Mali", cursive;
+  font-weight: 700;
+  font-size: 1.1rem;
+  cursor: pointer;
+  box-shadow: 0 4px 0 rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-decline {
+  background-color: #ffb3d9;
+  color: #333;
+  box-shadow: 0 4px 0 #d993b3;
+}
+
+.btn-accept {
+  background-color: #cceeff;
+  color: #333;
+  box-shadow: 0 4px 0 #99c2e0;
+}
+
+.btn-decline:hover,
+.btn-accept:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.05);
+  box-shadow: 0 6px 0 rgba(0, 0, 0, 0.1);
+}
+
+.btn-decline:active,
+.btn-accept:active {
+  transform: translateY(2px);
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.1);
+}
+
+.options-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.btn-choice {
+  width: 100%;
+  padding: 18px;
+  font-family: "Mali", cursive;
+  font-size: 1.2rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 40px;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  color: white;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.btn-choice:nth-child(1) {
+  background-color: #8da9c4;
+  box-shadow: 0 4px 0 #6e88a0;
+}
+
+.btn-choice:nth-child(2) {
+  background-color: #cceeff;
+  box-shadow: 0 4px 0 #99c2e0;
+}
+
+.btn-choice:nth-child(3) {
+  background-color: #ffb3d9;
+  box-shadow: 0 4px 0 #d993b3;
+}
+
+.btn-choice:nth-child(4) {
+  background-color: #ff8e72;
+  box-shadow: 0 4px 0 #d9755b;
+}
+
+.btn-2q-option.btn-no,
+.btn-no {
+  background-color: #8da9c4;
+  box-shadow: 0 4px 0 #6e88a0;
+}
+
+.btn-2q-option.btn-yes,
+.btn-yes {
+  background-color: #ff8e72;
+  box-shadow: 0 4px 0 #d9755b;
+}
+
+.btn-choice:hover,
+.btn-2q-option:hover,
+.btn-no:hover,
+.btn-yes:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 7px 0 #d9755b;
+}
+
+.btn-choice:nth-child(1):hover,
+.btn-no:hover {
+  box-shadow: 0 7px 0 #6e88a0;
+}
+.btn-choice:nth-child(2):hover {
+  box-shadow: 0 7px 0 #99c2e0;
+}
+.btn-choice:nth-child(3):hover {
+  box-shadow: 0 7px 0 #d993b3;
+}
+.btn-choice:nth-child(4):hover,
+.btn-yes:hover {
+  box-shadow: 0 7px 0 #d9755b;
+}
+
+.btn-yes:active,
+.btn-no:active,
+.btn-choice:active {
+  transform: translateY(2px);
+  box-shadow: none;
+}
+
+.btn-group-vertical {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+}
+
+.btn-danger {
+  background-color: #c62828 !important;
+  color: white !important;
+  border: none !important;
+  padding: 10px 20px !important;
+  border-radius: 20px !important;
+  font-weight: 700 !important;
+  text-decoration: none !important;
+  display: inline-block !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+  transition: background-color 0.2s !important;
+}
+
+.btn-danger:hover {
+  background-color: #a32222 !important;
+}

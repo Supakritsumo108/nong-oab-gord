@@ -1,0 +1,151 @@
+/* css/components.css */
+
+.progress-bar-container {
+  position: absolute;
+  top: 40px;
+  width: 100%;
+  max-width: 350px;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  z-index: 20;
+}
+
+.bar {
+  flex: 1;
+  height: 8px;
+  background-color: #d0d0d0;
+  border-radius: 10px;
+}
+
+.bar.active {
+  background-color: #0056b3;
+}
+
+.progress-container {
+  width: 100%;
+  height: 12px;
+  background-color: #e9ecef;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.progress-bar-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);
+  border-radius: 20px;
+  transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.list-container {
+  text-align: left;
+  margin-top: 10px;
+}
+
+.list-item {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 12px;
+  font-size: 1rem;
+  color: #000;
+}
+
+.list-item .num {
+  font-weight: 700;
+  margin-right: 8px;
+  min-width: 15px;
+}
+
+.list-item .text {
+  line-height: 1.5;
+}
+
+.small-text .list-item {
+  font-size: 0.8rem;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.header-pill {
+  background-color: #fff0f0;
+  color: #000;
+  font-weight: 700;
+  font-size: 1.1rem;
+  padding: 10px 15px;
+  border-radius: 15px;
+  margin-bottom: 15px;
+  display: inline-block;
+}
+
+.review-pill {
+  background-color: #e6f7ff;
+  color: #007bb5;
+  font-size: 0.9rem;
+  font-weight: 700;
+  padding: 8px 25px;
+  border-radius: 20px;
+  margin-bottom: 25px;
+  display: inline-block;
+  border: 1px solid #b3e0ff;
+}
+
+.warning-pill {
+  background-color: #ff6b6b;
+  color: white;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 8px 15px;
+  border-radius: 10px;
+  margin-top: 10px;
+  line-height: 1.4;
+  text-align: center;
+}
+
+.sub-text-center {
+  font-size: 0.65rem;
+  color: #555;
+  text-align: center;
+  margin-bottom: 15px;
+  line-height: 1.4;
+}
+
+.scrollable-text {
+  font-size: 0.8rem;
+  color: #333;
+  text-align: left;
+  line-height: 1.5;
+  margin-bottom: 15px;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.scrollable-text p {
+  text-indent: 20px;
+  margin-bottom: 10px;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-muted {
+  color: #6c757d;
+}
+
+.mb-2 {
+  margin-bottom: 0.5rem;
+}
+
+.mb-3 {
+  margin-bottom: 1rem;
+}
+
+.mb-4 {
+  margin-bottom: 1.5rem;
+}
+
+.mt-3 {
+  margin-top: 1rem;
+}
