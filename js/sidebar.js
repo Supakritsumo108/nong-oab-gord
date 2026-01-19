@@ -217,7 +217,7 @@ function handleSpecialMenu(menuId) {
             <br>
             <p><strong>พัฒนาโดย:</strong><br>วิทยาลัยพยาบาลบรมราชชนนี กรุงเทพ</p>
             <br>
-            <p><strong>เวอร์ชัน:</strong> 1.0.0</p>
+            <p><strong>เวอร์ชัน:</strong> 1.2.0</p>
           </div>
         `,
         confirmButtonText: "ปิด",
@@ -307,3 +307,4 @@ export {
   loadUserInfo,
   updateSidebarVisibility,
 };
+
